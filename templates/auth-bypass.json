@@ -1,0 +1,17 @@
+{
+    "id": "auth-bypass-001",
+    "name": "Admin Panel Authentication Bypass",
+    "severity": "critical",
+    "description": "Detects admin panel access without proper authentication",
+    "target": "{{BaseURL}}/admin",
+    "method": "GET",
+    "headers": {
+        "X-Forwarded-For": "127.0.0.1"
+    },
+    "matchers": {
+        "status": [200],
+        "regex": ["Admin Dashboard", "Welcome Admin"]
+    },
+    "poc_regex": "<title>(.*?) Admin Panel</title>",
+    "tags": ["auth-bypass", "cwe-287"]
+}
